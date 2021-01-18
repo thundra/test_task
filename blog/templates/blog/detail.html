@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="banner-page">
+        <h1>{{ post.title }}</h1>
+    </section>
+    <section class="blog-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 col-md-8 col-sm-7">
+                    <div class="blog-top">
+                        <p class="blog-author">{{ post.author }}</p>
+                        <div class="blog-date">
+                            <p>Date public: {{ post.date_pub|date:"d/m/Y" }}</p>
+                            <p>Date create: {{ post.date_create|date:"d/m/Y" }}</p>
+                            <p>Date update: {{ post.date_update|date:"d/m/Y" }}</p>
+                        </div>
+                    </div>
+                    <div class="blog-text">
+                        <div class="blog-preview">
+                            {% if post.image %}
+                                <img src="{{ post.image.url }}">
+                            {% else %}
+                                <img src="">
+                            {% endif %}
+                            <h2>{{ post.title }}</h2>
+                        </div>
+                        <div class="style-text">
+                            {{ post.text }}
+                        </div>
+                    </div>
+                    <ul class="blog-tags">
+                        {% for tag in tags_post %}
+                            <li><a href="{% url 'tags' slug=tag.slug %}">{{ tag.name }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-5">
+                    {% include 'blog/includes/sidebar.html' %}
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'admin:index' %}" target="_blank" class="btn btn__orange">Login</a>
+            {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}

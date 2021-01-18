@@ -1,0 +1,17 @@
+<div class="col-md-4 col-sm-6 mb30">
+    <div class="article">
+        <p class="article-date">{{ post.date_pub|date:"d" }} <span>{{ post.date_pub|date:"F" }}</span></p>
+        <div class="article-img">
+            {% if post.image %}
+                <img src="{{ post.image.url }}">
+            {% else %}
+                <img src="">
+            {% endif %}
+        </div>
+        <div class="article-info">
+            <h3 class="article-title"><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h3>
+            <p class="article-desc">{{ post.text|truncatewords:15 }}</p>
+            <a href="{% url 'post_detail' slug=post.slug %}" class="btn btn__orange">Read more</a>
+        </div>
+    </div>
+</div>

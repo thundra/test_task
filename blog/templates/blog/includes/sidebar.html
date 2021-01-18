@@ -1,0 +1,7 @@
+<div class="category-list-box">
+    <ul class="list-category">
+        {% for tag in tags %}
+            <li><a href="{% url 'tags' slug=tag.slug %}">{{ tag.name }}<span class="active-icon"></span></a></li>
+        {% endfor %}
+    </ul>
+</div>

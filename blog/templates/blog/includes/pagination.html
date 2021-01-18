@@ -1,0 +1,11 @@
+{% if posts.paginator.count > 10 %}
+    <ul class="pagination">
+        {% for n in posts.paginator.page_range %}
+            {% if n == posts.number %}
+                <li><span>{{ n }}</span></li>
+            {% elif n > posts.number|add:-3 and n < posts.number|add:3  %}
+                <li><a href="?page={{ n }}">{{ n }}</a></li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endif %}
